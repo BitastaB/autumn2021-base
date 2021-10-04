@@ -2,6 +2,9 @@ name: autumn2021
 channels:
   - defaults
 dependencies:
-  - matplotlib=3.4.2
+  - pip=20.2.4
   - python=3.8.5
-  - numpy=1.20.3
+  - pip:
+    - matplotlib==3.4.2
+    - numpy==1.20.3
+    - notebook==6.0.3
