@@ -16,13 +16,14 @@ class ReadWrite:
         Read a state of bins, boxes in the bins and unused boxes from some file
         @param path: path to the file
         """
-        state = State(0, (0, 0), [])
+        state = State(0, (0, 0), [], 0)
         n = 0
         with open(path, "r") as file:
             first_line = True
             line_counter = 0
             bin_width = 0
             bin_height = 0
+            box_count = 0
             lines = file.readlines()
             for line in lines:
                 line_counter += 1
@@ -49,6 +50,7 @@ class ReadWrite:
                         first_line = False
                     else:
                         if len(values) == 2:
+                            box_count += 1
                             width, height = values
                             try:
                                 width = int(width)
@@ -61,6 +63,7 @@ class ReadWrite:
                             state.boxes_open.append(Box(width, height, n=n))
                             n += 1
                         elif len(values) == 5:
+                            box_count += 1
                             width, height, box_x, box_y, bin_id = values
                             while len(state.bins) < int(bin_id) + 1:
                                 state.bins.append(Bin(bin_width, bin_height))
@@ -74,6 +77,7 @@ class ReadWrite:
                             raise IOError(f'Wrong format of line {line_counter} should be of format: \n\t box_width '
                                           f'box_height box_x box_y bin_width bin_height bin_id \n\t or \n\t box_width '
                                           f'box_height')
+        state.box_count = box_count
         return state
 
     @staticmethod

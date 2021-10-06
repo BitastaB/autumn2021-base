@@ -7,11 +7,15 @@ from Base.bp2DBox import Box
 
 
 class State:
-    def __init__(self, nbins: int, bin_size: (int, int), boxes_open: List[Box]):
+    def __init__(self, nbins: int, bin_size: (int, int), boxes_open: List[Box], box_count: int):
         self.bin_size = bin_size
         self.bins = [Bin(*self.bin_size) for _ in range(nbins)]
         self.boxes_open = boxes_open
         self.solution_runtime = None
+        self.box_count = box_count
+
+    def get_box_count(self):
+        return self.box_count
 
     def has_open_boxes(self):
         return len(self.boxes_open) > 0
