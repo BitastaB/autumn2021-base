@@ -6,9 +6,12 @@ import numpy as np
 from sklearn import tree
 
 from Base.bpReadWrite import ReadWrite
+import generate_data
 
 
-# def generateDataset(): TODO: based on number of boxes in input file
+def generate_dataset():  # TODO: based on number of boxes in input file
+    generate_data.main()
+
 
 def generate_decision_tree(box_count):
     X = []
@@ -35,7 +38,9 @@ def generate_decision_tree(box_count):
 
 
 def main():
+    print("In predict heuristic")
     iFile = args.file
+    print(f"input file: {iFile}")
     iState = ReadWrite.read_state(path=iFile)
     box_count = iState.get_box_count()
     print("box count : ", box_count)
