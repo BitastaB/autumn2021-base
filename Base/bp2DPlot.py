@@ -1,3 +1,4 @@
+import shutil
 import time
 import os
 import numpy as np
@@ -303,7 +304,7 @@ def plot_states(bins,
 
 
 
-def plot_states_on_single_image(bins, ncols=10,
+def plot_states_on_single_image(bins, filename, ncols=10,
                     showBox=True,  # flag parameter
                     showGrid=False,  # flag parameter
                     delta=0.1,  # figure size extension
@@ -343,7 +344,12 @@ def plot_states_on_single_image(bins, ncols=10,
 
     # fig.tight_layout()
     # fig.subplots_adjust(wspace=0, hspace=0)
-    write_figure(fig, 'test_fig_many_bins_old.pdf')
+
+    image_directory = "solution_images"
+    if os.path.exists(image_directory):
+        shutil.rmtree(image_directory)
+    os.mkdir(image_directory)
+    write_figure(fig, f"{image_directory}/{filename}.png")
     # plt.show()
     print("exit plt.show()")
 
