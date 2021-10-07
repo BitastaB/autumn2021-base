@@ -324,9 +324,9 @@ def plot_states_on_single_image(bins, filename, ncols=10,
     if len(axs.shape) == 1:
         axs = np.expand_dims(axs, 0)
     for row in np.arange(nrows, dtype=np.int):
-        print(f"row {row}/{nrows}")
+       # print(f"row {row}/{nrows}")
         for col in np.arange(ncols, dtype=np.int):
-            print(f"col {col}/{ncols}")
+           # print(f"col {col}/{ncols}")
             ax = axs[row, col]
             ax.set_axis_off()
             ax.get_xaxis().set_visible(False)
