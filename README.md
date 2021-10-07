@@ -14,4 +14,6 @@ Files:
 - generate_data.py generates training data
 - predict_heuristic.py predicts heuristic for a given set of boxes
 - application_main.py has the main function and exepects the file along with file path 
+- generated data stored in test_data directory
+- images of packed bins stored in image_solutions folder
 
