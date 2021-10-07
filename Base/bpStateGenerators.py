@@ -12,7 +12,7 @@ from Base.bp2DPnt import Point
 def state_generator(bin_size: Tuple[int, int], box_list: List[Tuple[int, Tuple[int, int]]], path: str = None, seed: int = 0):
     random.seed(seed)
 
-    state = State(0, bin_size, [])
+    state = State(0, bin_size, [],0)
     state.open_new_bin()
     counter = 0
     for number, box_dims in box_list:
