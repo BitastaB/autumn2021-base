@@ -71,35 +71,35 @@ def best_fit(state: State, box: Box):
 
 
 def best_fit_decreasing(state: State, box: Box):
-    sort_boxes_in_state(state)
     best_fit(state, box)
 
 
 def next_fit_decreasing(state: State, box: Box):
-    sort_boxes_in_state(state)
     next_fit(state, box)
 
 
 def first_fit_decreasing(state: State, box: Box):
-    sort_boxes_in_state(state)
     first_fit(state, box)
 
 
 def random_fit(state: State, box: Box):
     bin_idx = np.random.choice(len(state.bins))
     pnt = np.random.choice(state.get_bin_i(bin_idx).get_pnts_open())
-
     if not state.place_box_in_bin_at_pnt(box, bin_idx, pnt):
-        state.append_open_box(box)
+        state.open_new_bin()
+        state.place_box_in_bin_at_pnt(box, len(state.bins) - 1, state.bins[-1].get_corner('bl'))
 
 
-def single_type_heuristic(state: State, heuristic_step=most_enclosed_position, plot_result=False, plot_steps=False, plot_name=None):
+def single_type_heuristic(state: State, heuristic_step=next_fit, sorting=None, plot_result=False, plot_steps=False,
+                          plot_name=None):
     '''A generic heuristic that applies the same assignment step for each box'''
     start = time.time()
     step = 0
     name = 'plot'
     if plot_name is not None:
         name = plot_name
+    if sorting is not None and sorting is True:
+        sort_boxes_in_state(state)
     while state.has_open_boxes():
         box = state.get_next_open_box()
         heuristic_step(state, box)

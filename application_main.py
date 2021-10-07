@@ -8,7 +8,7 @@ from Base.bpUtil import sort_boxes, sort_boxes_in_state
 
 
 def main():
-    print("In bin_packing.py")
+    print("In application_main.py")
     iFile = args.file
 
     heuristic_name = predict_heuristic.predict(iFile)
