@@ -1,3 +1,9 @@
+Data generation: (generate_data.py)
+We make use of the state generators for generating three kinds of input data
+- state generators based on input box list (state_generator)
+- Data generation using normal distribution (random_state_generator)
+- Generates a random dataset by recursively dividing boxes (sliced_box_state_generator)
+
 Application can be run by 
 - python application_main.py -f ./path/tobfile/filename 
 - eg : python application_main.py -f ./CompetitionInstances/bp_50_00.txt
