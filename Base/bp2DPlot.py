@@ -346,9 +346,9 @@ def plot_states_on_single_image(bins, filename, ncols=10,
     # fig.subplots_adjust(wspace=0, hspace=0)
 
     image_directory = "solution_images"
-    if os.path.exists(image_directory):
-        shutil.rmtree(image_directory)
-    os.mkdir(image_directory)
+    if not os.path.exists(image_directory):
+        #shutil.rmtree(image_directory)
+        os.mkdir(image_directory)
     write_figure(fig, f"{image_directory}/{filename}.png")
     # plt.show()
     print("exit plt.show()")

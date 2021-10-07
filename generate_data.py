@@ -95,7 +95,7 @@ def main(box_count):
     # if not os.path.exists(args.output):
     os.mkdir(output_dir)
     name_to_label = {name: str(label) for label, (name, _) in enumerate(get_all_heuristics())}
-    print(f"name_to_label: {name_to_label}")
+    #print(f"name_to_label: {name_to_label}")
     with Pool(nthreads) as pool:
         results = pool.map(generate_sample_randomly,
                           [(i, name_to_label, output_dir, nsamples, box_count) for i in range(nsamples)])
