@@ -29,7 +29,7 @@ def state_generator(bin_size: Tuple[int, int], box_list: List[Tuple[int, Tuple[i
 def random_state_generator(bin_size: Tuple[int, int], box_num: int = 100, box_width_min: int = 1,
                            box_width_max: int = 4,
                            box_height_min: int = 1, box_height_max: int = 4, path: str = None, seed: int = 0):
-    state = State(0, bin_size, [])
+    state = State(0, bin_size, [], 0)
     state.open_new_bin()
     random.seed(seed)
     for i in range(box_num):
