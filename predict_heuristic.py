@@ -17,10 +17,12 @@ def generate_decision_tree(box_count):
     X = []
     for file in glob.glob("./test_data/data_*"):
         state = ReadWrite.read_state(path=file)
-        boxes = np.empty([box_count * 2])
+        #boxes = np.empty([box_count * 2])
+        boxes = np.empty([box_count])
         for pos, box in enumerate(state.boxes_open):
-            boxes[pos * 2 - 1] = box.get_w()
-            boxes[pos * 2] = box.get_h()
+            #boxes[pos * 2 - 1] = box.get_w()
+            #boxes[pos * 2] = box.get_h()
+            boxes[pos] = box.get_w() * box.get_h()
 
         X.append(boxes)
 
@@ -51,10 +53,12 @@ def predict(iFile):
     clf = generate_decision_tree(box_count)
 
     # predict heuristic
-    boxes = np.empty([box_count * 2])
+    #boxes = np.empty([box_count * 2])
+    boxes = np.empty([box_count])
     for pos, box in enumerate(iState.boxes_open):
-        boxes[pos * 2 - 1] = box.get_w()
-        boxes[pos * 2] = box.get_h()
+        #boxes[pos * 2 - 1] = box.get_w()
+        #boxes[pos * 2] = box.get_h()
+        boxes[pos] = box.get_w() * box.get_h()
         # OR multiply width * height instead of storing individually ?
 
     heuristic = str(int(clf.predict(boxes.reshape(1, -1))[0]))
@@ -68,3 +72,5 @@ def predict(iFile):
 #                                                                      'path/to/file/filename.extension')
 #    args = parser.parse_args()
 #    main()
+if __name__ == '__main__':
+    pass

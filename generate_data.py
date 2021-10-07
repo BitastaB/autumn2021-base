@@ -75,3 +75,5 @@ def main(box_count):
 #    parser.add_argument('-t', '--threads', required=False, type=int, default=4, help='Number of threads.')
 #    args = parser.parse_args()
 #    main()
+if __name__ == '__main__':
+    pass

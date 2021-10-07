@@ -51,6 +51,7 @@ def write_figure(fig, fname):
     write a mtplotlib figure to disk
     '''
     fmt = fname.split('.')[-1]
+    print(f"output filename {fname}")
     if fmt == 'png':
         fig.savefig(fname, facecolor=fig.get_facecolor(), edgecolor='w',
                     papertype='letter', format=fmt, transparent=True,
@@ -342,7 +343,7 @@ def plot_states_on_single_image(bins, ncols=10,
 
     # fig.tight_layout()
     # fig.subplots_adjust(wspace=0, hspace=0)
-    write_figure(fig, 'test_fig_many_bins.pdf')
+    write_figure(fig, 'test_fig_many_bins_old.pdf')
     # plt.show()
     print("exit plt.show()")
 
