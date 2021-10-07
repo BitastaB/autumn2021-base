@@ -314,13 +314,13 @@ def plot_states_on_single_image(bins, filename, ncols=10,
     nstates: int = len(bins)
     ncols = np.min([ncols, nstates])
     nrows = nstates//ncols + 1
-    print(f"col: {ncols}, rows {nrows}")
+   # print(f"col: {ncols}, rows {nrows}")
     # ratio = nrows/ncols
     w,h = plt.figaspect(ncols/nrows)#nrows/ncols)
     # fig, axs = plt.subplots(nrows, ncols, figsize=(w*nrows, h*nrows))
     fig, axs = plt.subplots(nrows, ncols, figsize=(w*nrows, h*nrows), constrained_layout=True)
     point_size = np.min([np.max([0.5, 80/ncols]), 8])
-    print(f"point_size: {point_size}")
+   # print(f"point_size: {point_size}")
     if len(axs.shape) == 1:
         axs = np.expand_dims(axs, 0)
     for row in np.arange(nrows, dtype=np.int):
