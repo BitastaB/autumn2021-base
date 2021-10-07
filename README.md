@@ -11,7 +11,7 @@ Application can be run by
 The generated data is passed through a decision tree classifier to predict best heuristic for an input state. Based on the classification, a simple heuristic is chosenn for the input state. Then that heuristic is applied to the file to get the final packing.
 
 Files:
-generate_data.py generates training data
-predict_heuristic.py predicts heuristic for a given set of boxes
-application_main.py has the main function and exepects the file along with file path 
+- generate_data.py generates training data
+- predict_heuristic.py predicts heuristic for a given set of boxes
+- application_main.py has the main function and exepects the file along with file path 
 
