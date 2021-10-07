@@ -9,7 +9,7 @@ import generate_data
 from Base.bpReadWrite import ReadWrite
 
 
-def generate_dataset(box_count):  # TODO: based on number of boxes in input file
+def generate_dataset(box_count):
     return generate_data.main(box_count)
 
 
