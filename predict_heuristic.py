@@ -5,12 +5,12 @@ import graphviz
 import numpy as np
 from sklearn import tree
 
-from Base.bpReadWrite import ReadWrite
 import generate_data
+from Base.bpReadWrite import ReadWrite
 
 
-def generate_dataset():  # TODO: based on number of boxes in input file
-    generate_data.main()
+def generate_dataset(box_count):  # TODO: based on number of boxes in input file
+    return generate_data.main(box_count)
 
 
 def generate_decision_tree(box_count):
@@ -37,15 +37,15 @@ def generate_decision_tree(box_count):
     return clf
 
 
-def main():
-    print("In predict heuristic")
-    iFile = args.file
+def predict(iFile):
+    print("In predict_heuristic.py")
+    #  iFile = args.file
     print(f"input file: {iFile}")
     iState = ReadWrite.read_state(path=iFile)
     box_count = iState.get_box_count()
-    print("box count : ", box_count)
 
-    # generateDataset() in test_data TODO:
+    # generate test data
+    name_to_label_dict = generate_dataset(box_count)
 
     # generate decision tree
     clf = generate_decision_tree(box_count)
@@ -57,15 +57,14 @@ def main():
         boxes[pos * 2] = box.get_h()
         # OR multiply width * height instead of storing individually ?
 
-    heuristic = clf.predict(boxes.reshape(1, -1))
-    print("PREDICTED HEURISTIC : ", heuristic)
+    heuristic = str(int(clf.predict(boxes.reshape(1, -1))[0]))
+    heuristic_name = list(name_to_label_dict.keys())[list(name_to_label_dict.values()).index(heuristic)]
 
-    return heuristic
+    return heuristic_name
 
-
-if __name__ == '__main__':
-    parser = argparse.ArgumentParser('Predict suitable heuristic for input state')
-    parser.add_argument('-f', '--file', required=True, type=str, help='Input file location in the format '
-                                                                      'path/to/file/filename.extension')
-    args = parser.parse_args()
-    main()
+# if __name__ == '__main__':
+#    parser = argparse.ArgumentParser('Predict suitable heuristic for input state')
+#    parser.add_argument('-f', '--file', required=True, type=str, help='Input file location in the format '
+#                                                                      'path/to/file/filename.extension')
+#    args = parser.parse_args()
+#    main()
